@@ -23,9 +23,9 @@
     /* Path mapping */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     }
   },
-  "include": ["src", "**/*.ts", "**/*.tsx"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "components", "utils"],
+  "exclude": ["node_modules", "dist", "vite.config.ts", "tailwind.config.js", "postcss.config.js", "tsconfig.node.json"]
 } 
