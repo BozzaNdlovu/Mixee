@@ -120,9 +120,9 @@ export function ProfilePage({ user, onBack, onUpdateUser }: ProfilePageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative z-10 max-w-md mx-auto bg-white/95 backdrop-blur-xl h-screen shadow-2xl border-x border-white/20 overflow-hidden flex flex-col">
       {/* Header */}
-      <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3">
+      <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3 flex-shrink-0">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
@@ -181,7 +181,7 @@ export function ProfilePage({ user, onBack, onUpdateUser }: ProfilePageProps) {
       </div>
 
       {/* Profile Content */}
-      <div className="p-4 space-y-6">
+      <div className="p-4 space-y-6 overflow-y-auto flex-1">
         {/* Profile Header */}
         <Card className="p-6 bg-white/80 backdrop-blur-xl border-0 shadow-lg">
           <div className="flex items-center gap-4">

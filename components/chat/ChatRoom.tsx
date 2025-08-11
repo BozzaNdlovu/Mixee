@@ -97,9 +97,9 @@ export function ChatRoom({ currentUser, chatPartner, onBack }: ChatRoomProps) {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="relative z-10 max-w-md mx-auto bg-white/95 backdrop-blur-xl h-screen shadow-2xl border-x border-white/20 overflow-hidden flex flex-col">
       {/* Chat Header */}
-      <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3">
+      <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3 flex-shrink-0">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
@@ -141,7 +141,7 @@ export function ChatRoom({ currentUser, chatPartner, onBack }: ChatRoomProps) {
       </div>
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4 h-[calc(100vh-140px)]">
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="text-center py-8">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -199,7 +199,7 @@ export function ChatRoom({ currentUser, chatPartner, onBack }: ChatRoomProps) {
       </div>
 
       {/* Message Input */}
-      <div className="bg-white/95 backdrop-blur-xl border-t border-gray-200 px-4 py-3">
+      <div className="bg-white/95 backdrop-blur-xl border-t border-gray-200 px-4 py-3 flex-shrink-0">
         <div className="flex items-center gap-3">
           <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
             <Smile className="w-5 h-5 text-gray-600" />

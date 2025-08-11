@@ -3,6 +3,10 @@ import { AuthScreen } from '../components/auth/AuthScreen'
 import { ProfilePage } from '../components/profile/ProfilePage'
 import { ChatRoom } from '../components/chat/ChatRoom'
 import { ChatList } from '../components/chat/ChatList'
+import { ModernVideoFeed } from '../components/modern/ModernVideoFeed'
+import { ModernCommunities } from '../components/modern/ModernCommunities'
+import { ModernMarketplace } from '../components/modern/ModernMarketplace'
+import { ModernLearningHub } from '../components/modern/ModernLearningHub'
 import { cn } from '../components/ui/utils'
 import { Zap, Sparkles, Flame, Star, Trophy, Users, ChevronDown, User, LogOut, Settings, ArrowLeft, Play, ShoppingBag, Users2 } from 'lucide-react'
 
@@ -15,7 +19,7 @@ interface User {
   avatar?: string
 }
 
-type AppView = 'main' | 'profile' | 'chat' | 'chatList' | 'videos' | 'communities' | 'market'
+type AppView = 'main' | 'profile' | 'chat' | 'chatList' | 'videos' | 'communities' | 'market' | 'learning'
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
@@ -185,6 +189,9 @@ export default function App() {
       case 'Market':
         setCurrentView('market')
         break
+      case 'Learning':
+        setCurrentView('learning')
+        break
       default:
         console.log(`Unknown section: ${section}`)
     }
@@ -268,222 +275,22 @@ export default function App() {
 
   // Show Videos page
   if (currentView === 'videos') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleBackToMain}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </button>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Videos</h1>
-              <p className="text-xs text-gray-600">Watch trending content</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          <div className="text-center py-12">
-            <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Play className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Video Platform</h2>
-            <p className="text-gray-600 mb-6">Watch trending videos from creators around the world</p>
-            
-            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                  <Play className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Trending</h3>
-                <p className="text-sm text-gray-600">Popular videos</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-                  <Users className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Following</h3>
-                <p className="text-sm text-gray-600">Your creators</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                  <Zap className="w-6 h-6 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Live</h3>
-                <p className="text-sm text-gray-600">Live streams</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
-                  <Star className="w-6 h-6 text-orange-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Favorites</h3>
-                <p className="text-sm text-gray-600">Saved videos</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+    return <ModernVideoFeed onBack={handleBackToMain} />
   }
 
   // Show Communities page
   if (currentView === 'communities') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleBackToMain}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </button>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Communities</h1>
-              <p className="text-xs text-gray-600">Join groups & discussions</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-4">
-          <div className="text-center py-12">
-            <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Users2 className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Communities</h2>
-            <p className="text-gray-600 mb-6">Connect with people who share your interests</p>
-            
-            <div className="grid grid-cols-1 gap-4 max-w-md mx-auto">
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Users2 className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <h3 className="font-semibold text-gray-900">Tech Enthusiasts</h3>
-                    <p className="text-sm text-gray-600">1.2k members • Active now</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Users2 className="w-6 h-6 text-green-600" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <h3 className="font-semibold text-gray-900">Design Creatives</h3>
-                    <p className="text-sm text-gray-600">856 members • 5 online</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Users2 className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <h3 className="font-semibold text-gray-900">Startup Founders</h3>
-                    <p className="text-sm text-gray-600">432 members • 12 online</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Users2 className="w-6 h-6 text-orange-600" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <h3 className="font-semibold text-gray-900">Remote Workers</h3>
-                    <p className="text-sm text-gray-600">2.1k members • 45 online</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+    return <ModernCommunities onBack={handleBackToMain} />
   }
 
   // Show Market page
   if (currentView === 'market') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        {/* Header */}
-        <div className="bg-white/95 backdrop-blur-xl border-b border-gray-200 px-4 py-3">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handleBackToMain}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
-            </button>
-            <div>
-              <h1 className="text-lg font-bold text-gray-900">Marketplace</h1>
-              <p className="text-xs text-gray-600">Shop & sell items</p>
-            </div>
-          </div>
-        </div>
+    return <ModernMarketplace onBack={handleBackToMain} />
+  }
 
-        {/* Content */}
-        <div className="p-4">
-          <div className="text-center py-12">
-            <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <ShoppingBag className="w-10 h-10 text-white" />
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Marketplace</h2>
-            <p className="text-gray-600 mb-6">Buy and sell items with your community</p>
-            
-            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                  <ShoppingBag className="w-6 h-6 text-blue-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Browse</h3>
-                <p className="text-sm text-gray-600">Find items</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
-                  <Star className="w-6 h-6 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Sell</h3>
-                <p className="text-sm text-gray-600">List items</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
-                  <Users className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Local</h3>
-                <p className="text-sm text-gray-600">Nearby items</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
-                  <Trophy className="w-6 h-6 text-orange-600" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-1">Deals</h3>
-                <p className="text-sm text-gray-600">Best offers</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
+  // Show Learning Hub page
+  if (currentView === 'learning') {
+    return <ModernLearningHub onBack={handleBackToMain} />
   }
 
   // Main app interface
@@ -502,9 +309,9 @@ export default function App() {
       </div>
 
       {/* Main App Container */}
-      <div className="relative z-10 max-w-md mx-auto bg-white/95 backdrop-blur-xl min-h-screen shadow-2xl border-x border-white/20">
+      <div className="relative z-10 max-w-md mx-auto bg-white/95 backdrop-blur-xl h-screen shadow-2xl border-x border-white/20 overflow-hidden flex flex-col">
         {/* Demo Mode Banner */}
-        <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-b border-green-200 px-4 py-2">
+        <div className="bg-gradient-to-r from-green-100 to-emerald-100 border-b border-green-200 px-4 py-2 flex-shrink-0">
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-ping" />
@@ -519,7 +326,7 @@ export default function App() {
         </div>
 
         {/* Header */}
-        <div className="relative">
+        <div className="relative flex-shrink-0">
           <div className="px-4 py-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -610,7 +417,7 @@ export default function App() {
         </div>
 
         {/* Main Content */}
-        <main className="h-[calc(100vh-200px)] overflow-y-auto p-4">
+        <main className="flex-1 overflow-y-auto p-4">
           <div className="space-y-6">
             <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
               <h2 className="text-xl font-bold text-gray-900 mb-4">Welcome back, {currentUser.displayName}! 👋</h2>
@@ -665,7 +472,7 @@ export default function App() {
         </main>
 
         {/* Bottom Navigation */}
-        <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white/95 backdrop-blur-xl border-t border-gray-200 px-4 py-2">
+        <div className="bg-white/95 backdrop-blur-xl border-t border-gray-200 px-4 py-2 flex-shrink-0">
           <div className="flex items-center justify-around">
             <button 
               onClick={() => handleBottomNavClick('Chats')}
@@ -714,6 +521,7 @@ export default function App() {
               <span className="text-xs font-medium text-gray-700">Shop</span>
             </button>
             <button 
+              onClick={() => handleBottomNavClick('Learning')}
               className="flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
               <div className="w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center">
